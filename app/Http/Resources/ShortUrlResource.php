@@ -18,6 +18,7 @@ class ShortUrlResource extends JsonResource
             'id' => $this->id,
             'destination' => $this->destination,
             'url' => $this->url,
+            'visits' => $this->whenLoaded('visits'),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'deleted_at' => $this->deleted_at,
