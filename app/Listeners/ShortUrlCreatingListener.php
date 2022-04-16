@@ -30,20 +30,21 @@ class ShortUrlCreatingListener
             return;
         }
 
-        $event->shortUrl->key = $this->getUniqueKey();
+        $event->shortUrl->key = $this->getUniqueKey(config('short_url.key_length'));
     }
 
     /**
      * Generate a unique key for the short url
      *
+     * @param int $length
      * @return string
      */
-    private function getUniqueKey(): string
+    private function getUniqueKey(int $length = 10): string
     {
-        $key = Str::random(10);
+        $key = Str::random($length);
 
         if (ShortUrl::where('key', $key)->exists()) {
-            return $this->getUniqueKey();
+            return $this->getUniqueKey($length);
         }
 
         return $key;
