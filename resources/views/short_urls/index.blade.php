@@ -35,7 +35,11 @@
                                     <td>{{ $shortUrl->id }}</td>
                                     <td>{{ $shortUrl->key }}</td>
                                     <td>{{ $shortUrl->destination }}</td>
-                                    <td>TODO</td>
+                                    <td>
+                                        <x-link :href="$shortUrl->url">
+                                            {{ $shortUrl->url }}
+                                        </x-link>
+                                    </td>
                                     <td>TODO</td>
                                     <td>
                                         <x-link :href="route('short-url.show', $shortUrl)">

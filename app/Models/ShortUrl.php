@@ -19,4 +19,18 @@ class ShortUrl extends Model
     protected $dispatchesEvents = [
         'creating' => ShortUrlCreatingEvent::class,
     ];
+
+    protected $appends = [
+        'url'
+    ];
+
+    /**
+     * Get the url attribute
+     *
+     * @return string
+     */
+    public function getUrlAttribute(): string
+    {
+        return route('short-url.visit', $this->key);
+    }
 }
