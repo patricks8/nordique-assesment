@@ -40,7 +40,7 @@
                                             {{ $shortUrl->url }}
                                         </x-link>
                                     </td>
-                                    <td>TODO</td>
+                                    <td>{{ $shortUrl->visits_count }}</td>
                                     <td>
                                         <x-link :href="route('short-url.show', $shortUrl)">
                                             {{ __('View') }}

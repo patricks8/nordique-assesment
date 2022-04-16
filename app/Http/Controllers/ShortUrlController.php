@@ -26,7 +26,8 @@ class ShortUrlController extends Controller
      */
     public function index(): View|Factory|Application
     {
-        $shortUrls = ShortUrl::paginate(50);
+        $shortUrls = ShortUrl::withCount('visits')
+            ->paginate(50);
 
         return view('short_urls.index', [
            'shortUrls' => $shortUrls

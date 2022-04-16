@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Events\ShortUrlCreatingEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ShortUrl extends Model
@@ -23,6 +24,14 @@ class ShortUrl extends Model
     protected $appends = [
         'url'
     ];
+
+    /**
+     * @return HasMany
+     */
+    public function visits(): HasMany
+    {
+        return $this->hasMany(ShortUrlVisit::class);
+    }
 
     /**
      * Get the url attribute
