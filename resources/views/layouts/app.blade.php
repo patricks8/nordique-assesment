@@ -29,6 +29,7 @@
 
             <!-- Page Content -->
             <main>
+                <x-success-message />
                 {{ $slot }}
             </main>
         </div>
