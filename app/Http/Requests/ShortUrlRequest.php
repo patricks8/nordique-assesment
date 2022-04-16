@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreShortUrlRequest extends FormRequest
+class ShortUrlRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreShortUrlRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,22 @@ class StoreShortUrlRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'destination' => [
+                'required',
+                'url',
+            ]
+        ];
+    }
+
+    /**
+     * Get the attributes
+     *
+     * @return array
+     */
+    public function attributes(): array
+    {
+        return [
+            'destination' => __('Destination'),
         ];
     }
 }
