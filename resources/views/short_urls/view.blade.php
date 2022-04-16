@@ -47,8 +47,8 @@
                     <div>
                         <x-label :value="__('Short url')" />
                         <div class="block mt-1 w-full">
-                            <x-link :href="$shortUrl->destination" target="_blank">
-                                {{ $shortUrl->destination }}
+                            <x-link :href="$shortUrl->url" target="_blank">
+                                {{ $shortUrl->url }}
                             </x-link>
                         </div>
                     </div>

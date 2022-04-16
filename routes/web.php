@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShortUrlController;
+use App\Http\Controllers\ShortUrlVisitController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +21,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('short-url', ShortUrlController::class);
 });
+
+Route::get(config('short_url.url_prefix') . '/{key}', ShortUrlVisitController::class)
+    ->name('short-url.visit');
 
 require __DIR__ . '/auth.php';
