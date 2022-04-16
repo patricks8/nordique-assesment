@@ -24,7 +24,9 @@
                                 <th>{{ __('Id') }}</th>
                                 <th>{{ __('Key') }}</th>
                                 <th>{{ __('Destination') }}</th>
+                                <th>{{ __('Short url') }}</th>
                                 <th>{{ __('Visits') }}</th>
+                                <th>{{ __('Actions') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,6 +36,12 @@
                                     <td>{{ $shortUrl->key }}</td>
                                     <td>{{ $shortUrl->destination }}</td>
                                     <td>TODO</td>
+                                    <td>TODO</td>
+                                    <td>
+                                        <x-link :href="route('short-url.show', $shortUrl)">
+                                            {{ __('View') }}
+                                        </x-link>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -8,10 +8,10 @@
             </div>
             <div class="w-full">
                 <div class="float-right space-x-2">
-                    <button type="submit" form="create-short-url-form" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                        {{ __('Add') }}
+                    <button type="submit" form="update-short-url-form" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                        {{ __('Save') }}
                     </button>
-                    <a class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" href="{{ route('short-url.index') }}">
+                    <a class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" href="{{ route('short-url.show', $shortUrl) }}">
                         {{ __('Cancel') }}
                     </a>
                 </div>
@@ -24,9 +24,10 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <x-validation-errors class="mb-4" :errors="$errors" />
-                    <form id="create-short-url-form" method="POST" action="{{ route('short-url.store') }}">
+                    <form id="update-short-url-form" method="POST" action="{{ route('short-url.update', $shortUrl) }}">
                         @csrf
-                        @include('short_urls.partials.form_inputs')
+                        @method('put')
+                        @include('short_urls.partials.form_inputs', ['shortUrl' => $shortUrl])
                     </form>
                 </div>
             </div>

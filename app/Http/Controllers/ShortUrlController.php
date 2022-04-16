@@ -54,51 +54,61 @@ class ShortUrlController extends Controller
         $this->service->store($request->validated());
 
         return redirect()->route('short-url.index')
-            ->with('successMessage', __('Added'));
+            ->with('successMessage', __('Added.'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ShortUrl  $shortUrl
-     * @return \Illuminate\Http\Response
+     * @param ShortUrl $shortUrl
+     * @return Application|Factory|View
      */
-    public function show(ShortUrl $shortUrl)
+    public function show(ShortUrl $shortUrl): View|Factory|Application
     {
-        //
+        return view('short_urls.view', [
+            'shortUrl' => $shortUrl,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ShortUrl  $shortUrl
-     * @return \Illuminate\Http\Response
+     * @param ShortUrl $shortUrl
+     * @return Application|Factory|View
      */
-    public function edit(ShortUrl $shortUrl)
+    public function edit(ShortUrl $shortUrl): Application|Factory|View
     {
-        //
+        return view('short_urls.edit', [
+            'shortUrl' => $shortUrl,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateShortUrlRequest  $request
-     * @param  \App\Models\ShortUrl  $shortUrl
-     * @return \Illuminate\Http\Response
+     * @param ShortUrlRequest $request
+     * @param ShortUrl $shortUrl
+     * @return RedirectResponse
      */
-    public function update(ShortUrlRequest $request, ShortUrl $shortUrl)
+    public function update(ShortUrlRequest $request, ShortUrl $shortUrl): RedirectResponse
     {
-        //
+        $shortUrl = $this->service->update($shortUrl, $request->validated());
+
+        return redirect()->route('short-url.show', $shortUrl)
+            ->with('successMessage', __('Saved.'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ShortUrl  $shortUrl
-     * @return \Illuminate\Http\Response
+     * @param ShortUrl $shortUrl
+     * @return RedirectResponse
      */
-    public function destroy(ShortUrl $shortUrl)
+    public function destroy(ShortUrl $shortUrl): RedirectResponse
     {
-        //
+        $this->service->destroy($shortUrl);
+
+        return redirect()->route('short-url.index')
+        ->with('successMessage', __('Trashed'));
     }
 }
