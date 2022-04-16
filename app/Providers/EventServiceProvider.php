@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Events\ShortUrlCreatingEvent;
 use App\Events\ShortUrlVisitEvent;
+use App\Events\UserCreatingEvent;
 use App\Listeners\ShortUrlCreatingListener;
 use App\Listeners\ShortUrlVisitListener;
+use App\Listeners\UserCreatingListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -27,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
         ShortUrlVisitEvent::class => [
             ShortUrlVisitListener::class,
         ],
+        UserCreatingEvent::class => [
+            UserCreatingListener::class,
+        ]
     ];
 
     /**
