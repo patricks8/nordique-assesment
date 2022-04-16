@@ -17,6 +17,9 @@ class ShortUrlController extends Controller
     public function __construct(ShortUrlService $service)
     {
         $this->service = $service;
+
+        // Add authorization for the whole resource
+        $this->authorizeResource(ShortUrl::class, 'short-url');
     }
 
     /**
